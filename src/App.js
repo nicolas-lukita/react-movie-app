@@ -26,14 +26,15 @@ function App() {
 	useEffect(() => {
 		fetchMovies();
 	}, []);
-	const state = useSelector((state) => state.movie);
+
+	const state = useSelector((state) => state.movie.results);
 	console.log(state);
 
-	return !state.length ? (
+	return !state ? (
 		<h1>NOT LOADED YET</h1>
 	) : (
 		<div className="App">
-			{state.results.map((element) => (
+			{state.map((element) => (
 				<h1 key={element.id}>{element.title}</h1>
 			))}
 		</div>
