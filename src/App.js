@@ -1,10 +1,10 @@
-import "./App.css";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { actionCreators } from "./state/index";
-import { useEffect, useState } from "react";
-import { fetchMovies } from "./state/actions";
+import './App.css';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from './state/index';
+import { useEffect, useState } from 'react';
+import { fetchMovies } from './state/actions';
 
 // const API_KEY = "1548126cc4af677d68cab0d2f2c9d77e";
 // const BASE_URL = "https://api.themoviedb.org/3/discover/movie";
@@ -20,24 +20,25 @@ import { fetchMovies } from "./state/actions";
 // };
 
 function App() {
-	const dispatch = useDispatch();
-	const { fetchMovies } = bindActionCreators(actionCreators, dispatch);
+  const dispatch = useDispatch();
+  // const { fetchMovies } = bindActionCreators(actionCreators, dispatch);
 
-	useEffect(() => {
-		fetchMovies();
-	}, []);
-	const state = useSelector((state) => state.movie);
-	console.log(state);
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, []);
 
-	return !state.length ? (
-		<h1>NOT LOADED YET</h1>
-	) : (
-		<div className="App">
-			{state.results.map((element) => (
-				<h1 key={element.id}>{element.title}</h1>
-			))}
-		</div>
-	);
+  const movies = useSelector((state) => state.movie.movies);
+  console.log(movies);
+
+  return !movies.length ? (
+    <h1>NOT LOADED YET</h1>
+  ) : (
+    <div className='App'>
+      {movies.map((element) => (
+        <h1 key={element.id}>{element.title}</h1>
+      ))}
+    </div>
+  );
 }
 
 export default App;
