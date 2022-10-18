@@ -1,7 +1,11 @@
-const movieReducer = (state = [], action) => {
+const initState = {
+	movies: [],
+};
+
+const movieReducer = (state = initState, action) => {
 	switch (action.type) {
 		case "FETCH-ALL":
-			return action.payload;
+			return { ...state, movies: [...action.payload] };
 		default:
 			return state;
 	}
