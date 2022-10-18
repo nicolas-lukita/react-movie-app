@@ -25,12 +25,13 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchMovies());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const movies = useSelector((state) => state.movie.movies);
+  const { movies, isLoading } = useSelector((state) => state.movie);
   console.log(movies);
 
-  return !movies.length ? (
+  return isLoading ? (
     <h1>NOT LOADED YET</h1>
   ) : (
     <div className='App'>
