@@ -8,6 +8,8 @@ import {
 	ListItemIcon,
 } from "@mui/material";
 
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
 	return (
 		<Box flex={1} p={10} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -17,13 +19,14 @@ const Sidebar = () => {
 				</Typography>
 				<List>
 					<ListItem disablePadding>
-						<ListItemButton component="a" href="/">
+						<ListItemButton component={Link} to="/">
 							{/* <ListItemIcon>
 								<Home />
 							</ListItemIcon> */}
 							<ListItemText primary="Homepage" />
 						</ListItemButton>
-						<ListItemButton component="a" href="/mywatchlist">
+
+						<ListItemButton component={Link} to="/mywatchlist">
 							<ListItemText primary="My Watchlist" />
 						</ListItemButton>
 					</ListItem>
