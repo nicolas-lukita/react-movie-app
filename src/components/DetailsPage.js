@@ -22,11 +22,17 @@ const DetailsPage = () => {
 				src={"https://image.tmdb.org/t/p/w500" + movieData.poster_path}
 				alt={movieData.title}
 			/> */}
-			<button onClick={() => dispatch(addWatchlist(movieData.id))}>
-				Add to Watchlist
-			</button>
-			<button onClick={() => dispatch(removeWatchlist(movieData.id))}>
-				Remove from Watchlist
+
+			<button
+				onClick={
+					watchList.has(movieData.id)
+						? () => dispatch(removeWatchlist(movieData.id))
+						: () => dispatch(addWatchlist(movieData.id))
+				}
+			>
+				{watchList.has(movieData.id)
+					? "Remove from Watchlist"
+					: "Add to Watchlist"}
 			</button>
 			<h3>WATCHLIST MOVIES = {watchList}</h3>
 			<h2>{movieData.title}</h2>
